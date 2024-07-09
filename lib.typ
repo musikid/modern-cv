@@ -160,27 +160,6 @@
   set page(
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
-    footer: [
-      #set text(
-        fill: gray,
-        size: 8pt,
-      )
-      #__justify_align_3[
-        #smallcaps[#date]
-      ][
-        #smallcaps[
-          #if language == "zh" or language == "ja" [
-            #author.firstname#author.lastname
-          ] else [
-            #author.firstname#sym.space#author.lastname
-          ]
-          #sym.dot.c
-          #linguify("resume", from: lang_data)
-        ]
-      ][
-        #counter(page).display()
-      ]
-    ],
     footer-descent: 0pt,
   )
   
@@ -295,7 +274,7 @@
       )
       #block[
         #align(horizon)[
-          #if ("phone" in author) [
+          #if ("phone" in author and author.phone != none) [
             #phone-icon
             #box[#text(author.phone)]
             #separator
@@ -443,6 +422,7 @@
     font: ("Source Sans Pro", "Source Sans 3"),
     lang: language,
     size: 11pt,
+    weight: "regular",
     fill: color-darkgray,
     fallback: true,
   )
@@ -450,27 +430,6 @@
   set page(
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
-    footer: [
-      #set text(
-        fill: gray,
-        size: 8pt,
-      )
-      #__justify_align_3[
-        #smallcaps[#date]
-      ][
-        #smallcaps[
-          #if language == "zh" or language == "ja" [
-            #author.firstname#author.lastname
-          ] else [
-            #author.firstname#sym.space#author.lastname
-          ]
-          #sym.dot.c
-          #linguify("cover-letter", from: lang_data)
-        ]
-      ][
-        #counter(page).display()
-      ]
-    ],
     footer-descent: 0pt,
   )
   
@@ -567,7 +526,7 @@
           #stack(
             dir: ltr,
             spacing: 0.5em,
-            if ("phone" in author) [
+            if ("phone" in author and author.phone != none) [
               #phone-icon
               #box[#text(author.phone)]
               #separator
@@ -622,10 +581,6 @@
       #pad(bottom: 2em)[
         #text(weight: "light")[#linguify("sincerely", from: lang_data)#sym.comma] \
         #text(weight: "bold")[#author.firstname #author.lastname] \ \
-        #text(weight: "light", style: "italic")[ #linguify(
-            "attached",
-            from: lang_data,
-          )#sym.colon #linguify("curriculum-vitae", from: lang_data)]
       ]
     ]
   }
