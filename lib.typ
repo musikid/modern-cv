@@ -276,7 +276,7 @@
         #align(horizon)[
           #if ("phone" in author and author.phone != none) [
             #phone-icon
-            #box[#text(author.phone)]
+            #box[#link("tel:" + author.phone)[#author.phone]]
             #separator
           ]
           #if ("email" in author) [
@@ -528,7 +528,7 @@
             spacing: 0.5em,
             if ("phone" in author and author.phone != none) [
               #phone-icon
-              #box[#text(author.phone)]
+              #box[#link("tel:" + author.phone)[#author.phone]]
               #separator
             ],
             if ("email" in author) [
@@ -626,13 +626,13 @@
   
   // TODO: Make this adaptable to content
   underline(evade: false, stroke: 0.5pt, offset: 0.3em)[
-    #text(weight: "bold", size: 12pt)[Job Application for #job-position]
+    #text(weight: "bold", size: 12pt)[#job-position]
   ]
   pad(top: 1em, bottom: 1em)[
     #text(weight: "light", fill: color-gray)[
       #if dear == "" [
         #linguify("dear", from: lang_data)
-      ] else [
+      ] else if dear != none [
         #dear
       ]
       #addressee,
