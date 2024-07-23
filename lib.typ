@@ -297,6 +297,11 @@
               #link("https://www.linkedin.com/in/" + author.linkedin)[#author.firstname #author.lastname]
             ]
           ]
+          #if ("website" in author) [
+            #separator
+            #fa-icon("globe", fill: color-darknight)
+            #box[#link(author.website)[#author.website]]
+          ]
         ]
       ]
     ]
