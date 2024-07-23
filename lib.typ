@@ -189,7 +189,7 @@
       below: 1em,
     )
     #set text(
-      size: 16pt,
+      size: 13pt,
       weight: "regular",
     )
     
@@ -208,7 +208,7 @@
   show heading.where(level: 2): it => {
     set text(
       color-darkgray,
-      size: 12pt,
+      size: 11pt,
       style: "normal",
       weight: "bold",
     )
@@ -228,7 +228,7 @@
       #pad(bottom: 5pt)[
         #block[
           #set text(
-            size: 32pt,
+            size: 24pt,
             style: "normal",
             font: ("Roboto"),
           )
