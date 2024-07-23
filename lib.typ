@@ -6,6 +6,7 @@
 #let color-darkgray = rgb("#333333")
 #let color-gray = rgb("#5d5d5d")
 #let default-accent-color = rgb("#262F99")
+#let default-location-color = rgb("#333333")
 
 // const icons
 #let linkedin-icon = box(
@@ -14,8 +15,15 @@
 #let github-icon = box(
   fa-icon("github", fill: color-darknight),
 )
+#let twitter-icon = box(
+  fa-icon("twitter", fill: color-darknight),
+)
+#let google-scholar-icon = box(
+  fa-icon("google-scholar", fill: color-darknight),
+)
 #let phone-icon = box(fa-icon("square-phone", fill: color-darknight))
 #let email-icon = box(fa-icon("envelope", fill: color-darknight))
+#let birth-icon = box(fa-icon("cake", fill: color-darknight))
 
 /// Helpers
 
@@ -175,6 +183,7 @@
   )
   
   show heading.where(level: 1): it => [
+    
     #set block(
       above: 1em,
       below: 1em,
@@ -193,6 +202,7 @@
       #text[#strong[#text(color)[#it.body.text]]]
       #box(width: 1fr, line(length: 100%))
     ]
+    
   ]
   
   show heading.where(level: 2): it => {
@@ -254,7 +264,7 @@
   let address = {
     set text(
       size: 9pt,
-      weight: "bold",
+      weight: "regular",
     )
     align(center)[
       #if ("address" in author) [
@@ -294,7 +304,7 @@
             #separator
             #linkedin-icon
             #box[
-              #link("https://www.linkedin.com/in/" + author.linkedin)[#author.firstname #author.lastname]
+              #link("https://www.linkedin.com/in/" + author.linkedin)[#author.linkedin]
             ]
           ]
           #if ("website" in author) [
@@ -333,15 +343,27 @@
 /// - location (string): The location of the resume entry
 /// - date (string): The date of the resume entry, this can be a range (e.g. "Jan 2020 - Dec 2020")
 /// - description (content): The body of the resume entry
+/// - title-link (string): The link to use for the title (can be none)
+/// - accent-color (color): Override the accent color of the resume-entry
+/// - location-color (color): Override the default color of the "location" for a resume entry.
 #let resume-entry(
   title: none,
   location: "",
   date: "",
   description: "",
+  title-link: none,
   accent-color: default-accent-color,
+  location-color: default-location-color,
 ) = {
+  let title-content
+  if type(title-link) == "string" {
+    title-content = link(title-link)[#title]
+  } else {
+    title-content = title
+  }
+  
   pad[
-    #justified-header(title, location)
+    #justified-header(title-content, location)
     #if date != "" and description != "" [
       #secondary-justified-header(description, date)
     ]
