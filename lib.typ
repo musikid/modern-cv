@@ -494,10 +494,10 @@
   
   let name = {
     align(right)[
-      #pad(bottom: 5pt)[
+      #pad(bottom: 3pt)[
         #block[
           #set text(
-            size: 32pt,
+            size: 24pt,
             style: "normal",
             font: ("Roboto"),
           )
@@ -590,7 +590,7 @@
   let letter-heading = {
     grid(
       columns: (1fr, 2fr),
-      rows: (100pt),
+      rows: (50pt),
       align(left + horizon)[
         #block(
           clip: true,
